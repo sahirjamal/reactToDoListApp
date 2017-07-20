@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Todo from './Todo';
 
 class TodoList extends React.Component {
 	render() {
@@ -15,4 +16,4 @@ class TodoList extends React.Component {
 
 
 
-export default ToDoList
+export default TodoList
