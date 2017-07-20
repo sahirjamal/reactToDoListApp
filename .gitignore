@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# other shit
+app.bundle.js
+app.bundle.js.map
+package.json
+
