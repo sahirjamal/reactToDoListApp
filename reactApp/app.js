@@ -10,26 +10,24 @@ const dummyData = [
 	{ taskText: "slap Shridhar", completed: false },
 ];
 
-class TodoList extends React.Component {
-	render() {
-		return (
-				<div>
-					<ul>
-						{dummyData.map((task) => <Todo task={task} />)}
-					</ul>
-				</div>
-		)
+class TodoApp extends React.Component {
+	constructor(props) {
+		super(props),
+		this.state = {
+			todos: []
+		}
 	}
-}
 
-class Todo extends React.Component {
-
+	componentDidMount() {
+		this.setState({todos: dummyData}).bind(this);
+	}
+	
 	render() {
-		return (
-				<li>
-					<input type="button" name="finishTask" value="X" />
-					{this.props.task.completed ? <strike>{this.props.task.taskText}</strike> : this.props.task.taskText}
-				</li>
+		return(
+			<div>
+				<InputLine />
+				<TodoList todos={this.state.todos} />
+			</div>
 		)
 	}
 }
@@ -45,16 +43,31 @@ class InputLine extends React.Component {
 	}
 }
 
-class TodoApp extends React.Component {
+class TodoList extends React.Component {
 	render() {
-		return(
-			<div>
-				<InputLine />
-				<TodoList />
-			</div>
+		return (
+				<div>
+					<ul>
+						{this.props.todos.map((task) => <Todo task={task} />)}
+					</ul>
+				</div>
 		)
 	}
 }
+
+class Todo extends React.Component {
+
+	render() {
+		return (
+				<li>
+					<input type="button" name="finishTask" value="X" /> {(' ')}
+					{this.props.task.completed ? <strike>{this.props.task.taskText}</strike> : this.props.task.taskText}
+				</li>
+		)
+	}
+}
+
+
 
 
 ReactDOM.render(<TodoApp />,
